@@ -23,6 +23,9 @@ class Database():
     def check_user_database(self, plate_number):
         self.cur.execute('SELECT NAME FROM USER WHERE PLATE_NUMBEr == "?"', (plate_number))
         return self.cur.fetchone()
+    
+    def check_parking_station(self, plate_number):
+        pass
         
 
         

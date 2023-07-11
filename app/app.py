@@ -12,6 +12,7 @@ db_path = "../data/Parking.db"
 database = ParkingDatabase.Database(db_path)
 parking = Parking()
 
+
 @app.route('/enter_car', methods=['POST'])
 def enter_car():
     plate_number = request.form['plate_number']
@@ -20,7 +21,7 @@ def enter_car():
     user = database.check_user_database(plate_number)
     database.insert_data(plate_number, entry_time, user, sticker)
     
-@app.route('check_timeover')
+@app.route('/check_timeover')
 def check_timeover():
     enter_time = database.get_enter_time()
 
@@ -31,21 +32,24 @@ def check_timeover():
     else:
         return "pass"
     
-@app.route('check_sticker_by_plate_number')
+@app.route('/check_sticker_by_plate_number')
 def check_sticker_by_plate_number():
     
     if database.get_sticker():
         return "yes"
     else:
         return "no"
-    
 
+@app.route('/parking_map_image')
+def parking_map_image():
+    pass
 
-
+@app.route('/get_user_parking_station')
+def get_user_parking_station():
+    pass
 
 @app.route('/')
 def index():
-    # index.html 파일을 렌더링해서 반환합니다.
     return render_template('index.html')
 
 if __name__ == '__main__':
